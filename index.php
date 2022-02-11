@@ -15,6 +15,7 @@ if (isset($_POST['submit'])) {
     ]);
 
     $existant_country = $stmt_country_exist_or_not->fetchAll();
+
     if ($existant_country) {
         $id_country = $existant_country[0]['id_country'];
     } else {
@@ -157,7 +158,7 @@ if (isset($_POST['submit'])) {
             <input id="sex"
                    type="radio"
                    name="sex"
-                   value="2"><br>
+                   value="3"><br>
             <label for="sex">Other</label>
         </div>
         <h3>Address table</h3>
