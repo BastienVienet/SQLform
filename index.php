@@ -2,10 +2,14 @@
 
 require_once './connecting_DSN.php';
 
+function Cleantext($text) {
+    return ucfirst(mb_strtolower(trim($text)));
+}
+
 if (isset($_POST['submit'])) {
 
     //Enter a country in my 'countries' table in my database
-    $country = ucfirst(mb_strtolower(trim($_POST['country'])));
+    $country = Cleantext($_POST['country']);
     // Test if country exists : Check in database
     $stmt_country_exist_or_not = $pdo->prepare(
             'SELECT * FROM countries WHERE country_name = :country');
@@ -36,9 +40,9 @@ if (isset($_POST['submit'])) {
                    VALUES (:street, :postal_code, :city, :countries_id_country)');
 
     $stmt_address->execute([
-            'street' => $_POST['street'],
+            'street' => Cleantext($_POST['street']),
             'postal_code' => $_POST['postal_code'],
-            'city' => $_POST['city'],
+            'city' => Cleantext($_POST['city']),
             'countries_id_country' => $id_country
     ]);
 
@@ -51,8 +55,8 @@ if (isset($_POST['submit'])) {
                    VALUES (:first_name, :last_name, :birthdate, :email, :phone, :civility, :sex) ');
 
     $stmt_user->execute([
-            'first_name' => $_POST['first_name'],
-            'last_name' => $_POST['last_name'],
+            'first_name' => Cleantext($_POST['first_name']),
+            'last_name' => Cleantext($_POST['last_name']),
             'birthdate' => $_POST['birthdate'],
             'email' => mb_strtolower($_POST['email']),
             'phone' => $_POST['phone'],
