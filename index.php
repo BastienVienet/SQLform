@@ -82,7 +82,6 @@ if (isset($_POST['submit'])) {
 require_once './header.php'
 ?>
 
-
 <section class="section">
     <div class="container">
         <h1 class="title is-1">
@@ -217,6 +216,7 @@ require_once './header.php'
         </div>
     </div>
 </section>
+
 <?php
 
 require_once './footer.php';
