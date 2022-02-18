@@ -9,10 +9,9 @@
           href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
 </head>
 <body>
-<nav class="navbar"
+<nav class="navbar mx-3 mt-2"
      role="navigation"
      aria-label="main navigation">
-
     <div id="navbarBasicExample"
          class="navbar-menu is-active">
         <div class="navbar-start">
