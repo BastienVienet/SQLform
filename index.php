@@ -86,7 +86,7 @@ require_once './header.php'
 <section class="section">
     <div class="container">
         <h1 class="title is-1">
-            Testing php and databases interactions with PDO </h1>
+            Testing php and databases interactions with PDO</h1>
         <h2 class="subtitle">Notice : All of these data are going to be collected to my computer</h2><br>
         <div class="columns is-multiline">
             <div class="is-child box column is-8 is-offset-2">
