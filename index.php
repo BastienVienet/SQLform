@@ -78,21 +78,12 @@ if (isset($_POST['submit'])) {
     ]);
 
 }
+
+require_once './header.php'
 ?>
 
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1">
-    <title>Testing php and db interactions</title>
-    <link rel="stylesheet"
-          href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
-</head>
-<body>
+
 <section class="section">
-    <a href="list_users.php">See the users page with their data >></a>
     <div class="container">
         <h1 class="title is-1">
             Testing php and databases interactions with PDO </h1>
@@ -226,5 +217,6 @@ if (isset($_POST['submit'])) {
         </div>
     </div>
 </section>
-</body>
-</html>
+<?php
+
+require_once './footer.php';

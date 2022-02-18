@@ -1,5 +1,3 @@
-<a href="index.php">Link to the form >></a> <br><br>
-
 <?php
 
 require_once './connecting_DSN.php';
@@ -23,19 +21,9 @@ $stmt_all_data->execute([]);
 /*  foreach ($user_all_data as $row) {
     echo "{$row['first_name']} - {$row['last_name']} - {$row['birthdate']} - {$row['email']} - {$row['phone']} - {$row['civility']} - {$row['sex']} - {$row['street']} - {$row['postal_code']} - {$row['city']} - {$row['country_name']}<br><br>";
 }*/
-?>
 
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1">
-    <title>Testing php and db interactions</title>
-    <link rel="stylesheet"
-          href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
-</head>
-<body>
+require_once 'header.php'
+?>
 
 <div class="columns is-multiline is-variable">
     <?php while ($rUAD = $stmt_all_data->fetch()) { ?>
@@ -62,5 +50,6 @@ $stmt_all_data->execute([]);
         </div>
     <?php } ?>
 </div>
-</body>
-</html>
+<?php
+
+require_once 'footer.php';
