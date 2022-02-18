@@ -24,31 +24,37 @@ $stmt_all_data->execute([]);
 
 require_once 'header.php'
 ?>
+<div class="container">
 
-<div class="columns is-multiline is-variable">
-    <?php while ($rUAD = $stmt_all_data->fetch()) { ?>
-        <div class="card is-child box column is-half">
-            <div class="card-content">
-                <div class="media">
-                    <div class="media-left">
-                        <figure class="image is-48x48">
-                            <img src="https://bulma.io/images/placeholders/96x96.png"
-                                 alt="Placeholder image">
-                        </figure>
+    <div class="columns is-multiline is-half-desktop my-4">
+        <?php while ($rUAD = $stmt_all_data->fetch()) { ?>
+            <div class="card box column is-5 mx-auto mb-6">
+                <div class="card-content mb-3">
+                    <div class="media">
+                        <div class="media-left">
+                            <figure class="image is-48x48">
+                                <img src="https://bulma.io/images/placeholders/96x96.png"
+                                     alt="Placeholder image">
+                            </figure>
+                        </div>
+                        <div class="media-content">
+                            <p class="title is-4"> <?= $rUAD['first_name'] . " " . $rUAD['last_name'] ?></p>
+                            <p class="subtitle is-6"><?= $rUAD['email'] ?></p>
+                        </div>
                     </div>
-                    <div class="media-content">
-                        <p class="title is-4"> <?= $rUAD['first_name'] . " " . $rUAD['last_name'] ?></p>
-                        <p class="subtitle is-6"><?= $rUAD['email'] ?></p>
+                    <div class="content">
+                        <p>Address
+                           : <?= $rUAD['street'] . " / " . $rUAD['postal_code'] . " " . $rUAD['city'] . " / " . $rUAD['country_name'] ?></p>
+                        <p>Phone number : <?= $rUAD['phone'] ?></p>
                     </div>
                 </div>
-                <div class="content">
-                    <p>Address
-                       : <?= $rUAD['street'] . " / " . $rUAD['postal_code'] . " " . $rUAD['city'] . " / " . $rUAD['country_name'] ?></p>
-                    <p>Phone number : <?= $rUAD['phone'] ?></p>
-                </div>
+                <footer class="card-footer">
+                    <a href="#" class="card-footer-item">Edit</a>
+                    <a href="#" class="card-footer-item">Delete</a>
+                </footer>
             </div>
-        </div>
-    <?php } ?>
+        <?php } ?>
+    </div>
 </div>
 <?php
 
