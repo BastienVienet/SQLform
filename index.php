@@ -118,7 +118,7 @@ require_once './header.php'
                         <input class="input is-normal"
                                type="email"
                                name="email"
-                               placeholder="Enter your email"
+                               placeholder="Enter your email - Example : test.test@example.com"
                                required><br><br>
                     </label>
                     <label for="phone">Phone number<br>
@@ -126,7 +126,7 @@ require_once './header.php'
                                type="tel"
                                name="phone"
                                maxlength="10"
-                               placeholder="Enter your phone number"><br>
+                               placeholder="Enter your phone number - Example : 0791234567"><br>
                     </label><br>
                     <p>Civility</p>
                     <div>
@@ -195,8 +195,8 @@ require_once './header.php'
                     <label for="postal_code">Postal code<br>
                         <input class="input is-normal"
                                type="number"
-                               min="1000"
-                               max="9999"
+                               min="100"
+                               max="999999"
                                name="postal_code"
                                placeholder="NPA"><br><br>
                     </label>
