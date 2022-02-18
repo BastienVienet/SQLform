@@ -19,10 +19,10 @@ if (isset($_POST['submit'])) {
             'country' => $country
     ]);
 
-    $existant_country = $stmt_country_exist_or_not->fetchAll();
+    $existant_country = $stmt_country_exist_or_not->fetch();
 
     if ($existant_country) {
-        $id_country = $existant_country[0]['id_country'];
+        $id_country = $existant_country['id_country'];
     } else {
         //Enter the new country in my database
         $stmt_country = $pdo->prepare(
