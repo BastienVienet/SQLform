@@ -49,7 +49,7 @@ require_once 'header.php'
                     </div>
                 </div>
                 <footer class="card-footer">
-                    <a href="#" class="card-footer-item">Edit</a>
+                    <a href="modify_users.php" class="card-footer-item">Edit</a>
                     <a href="#" class="card-footer-item">Delete</a>
                 </footer>
             </div>
