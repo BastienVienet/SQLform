@@ -18,11 +18,18 @@
     </style>
 </head>
 <body>
-<nav class="navbar mx-3 mt-2"
+<nav class="navbar mx-3 is-fixed-top"
      role="navigation"
      aria-label="main navigation">
+    <div class="navbar-brand">
+        <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+        </a>
+    </div>
     <div id="navbarBasicExample"
-         class="navbar-menu is-active">
+         class="navbar-menu">
         <div class="navbar-start">
             <a class="navbar-item"
                href="index.php">Form
@@ -30,7 +37,6 @@
             <a class="navbar-item"
                href="list_users.php">Users
             </a>
-
         </div>
         <div class="navbar-end">
             <div class="navbar-item">

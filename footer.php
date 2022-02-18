@@ -6,5 +6,6 @@
     </button>
 </p>
 <script src="move_to_top.js"></script>
+<script src="toggle_burger_menu_navbar.js"></script>
 </body>
 </html>
