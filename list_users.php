@@ -16,7 +16,7 @@ INNER JOIN countries c
 ');
 
 $stmt_all_data->execute([]);
-// $user_all_data = $stmt_all_data->fetchAll();
+//$user_all_data = $stmt_all_data->fetchAll();
 
 /*  foreach ($user_all_data as $row) {
     echo "{$row['first_name']} - {$row['last_name']} - {$row['birthdate']} - {$row['email']} - {$row['phone']} - {$row['civility']} - {$row['sex']} - {$row['street']} - {$row['postal_code']} - {$row['city']} - {$row['country_name']}<br><br>";
