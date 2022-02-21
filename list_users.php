@@ -24,7 +24,7 @@ $stmt_all_data->execute([]);
 
 require_once 'header.php'
 ?>
-    <div class="container">
+    <div class="container mt-6">
         <div class="columns is-multiline is-half-desktop my-4">
             <?php while ($rUAD = $stmt_all_data->fetch()) { ?>
                 <div class="card box column is-5 mx-auto mb-6">
