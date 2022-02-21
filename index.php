@@ -81,7 +81,7 @@ if (isset($_POST['submit'])) {
     <div class="notification is-success is-light">
         <button class="delete"></button>
         You got added to my database !
-        Check your little card <a href="list_users.php">here</a> !
+        Check your little card <a href="list_users.php#<?= $_POST['first_name'] . "-" . $_POST['last_name'] . "-" . $id_user ?>">here</a> !
     </div>
     <?php
 
