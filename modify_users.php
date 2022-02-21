@@ -33,10 +33,10 @@ if (isset($_POST['submit'])) {
     $country = Cleantext($_POST['country']);
     // Test if country exists : Check in database
     $stmt_country_exist_or_not = $pdo->prepare(
-        'SELECT * FROM countries WHERE country_name = :country');
+            'SELECT * FROM countries WHERE country_name = :country');
 
     $stmt_country_exist_or_not->execute([
-        'country' => $country
+            'country' => $country
     ]);
 
     $existant_country = $stmt_country_exist_or_not->fetch();
@@ -46,10 +46,10 @@ if (isset($_POST['submit'])) {
     } else {
         //Enter the new country in my database
         $stmt_country = $pdo->prepare(
-            'INSERT INTO countries (country_name)
+                'INSERT INTO countries (country_name)
                    VALUE (:country) ');
         $stmt_country->execute([
-            'country' => $country
+                'country' => $country
         ]);
 
         $id_country = $pdo->lastInsertId();
@@ -57,14 +57,14 @@ if (isset($_POST['submit'])) {
 
     //Enter an address in my 'address' table in my database
     $stmt_address = $pdo->prepare(
-        'INSERT INTO addresses (street, postal_code, city, countries_id_country) 
+            'INSERT INTO addresses (street, postal_code, city, countries_id_country) 
                    VALUES (:street, :postal_code, :city, :countries_id_country)');
 
     $stmt_address->execute([
-        'street' => Cleantext($_POST['street']),
-        'postal_code' => $_POST['postal_code'],
-        'city' => Cleantext($_POST['city']),
-        'countries_id_country' => $id_country
+            'street' => Cleantext($_POST['street']),
+            'postal_code' => $_POST['postal_code'],
+            'city' => Cleantext($_POST['city']),
+            'countries_id_country' => $id_country
     ]);
 
     $id_address = $pdo->lastInsertId();
@@ -72,29 +72,29 @@ if (isset($_POST['submit'])) {
 
     //Enter a user in my 'users' table in my database
     $stmt_user = $pdo->prepare(
-        'INSERT INTO users (first_name, last_name, birthdate, email, phone, civility, sex)
+            'INSERT INTO users (first_name, last_name, birthdate, email, phone, civility, sex)
                    VALUES (:first_name, :last_name, :birthdate, :email, :phone, :civility, :sex) ');
 
     $stmt_user->execute([
-        'first_name' => Cleantext($_POST['first_name']),
-        'last_name' => Cleantext($_POST['last_name']),
-        'birthdate' => $_POST['birthdate'],
-        'email' => mb_strtolower($_POST['email']),
-        'phone' => $_POST['phone'],
-        'civility' => $_POST['civility'],
-        'sex' => $_POST['sex'],
+            'first_name' => Cleantext($_POST['first_name']),
+            'last_name' => Cleantext($_POST['last_name']),
+            'birthdate' => $_POST['birthdate'],
+            'email' => mb_strtolower($_POST['email']),
+            'phone' => $_POST['phone'],
+            'civility' => $_POST['civility'],
+            'sex' => $_POST['sex'],
     ]);
 
     $id_user = $pdo->lastInsertId();
 
     //Linking 'users' and 'address' in my 'user_has_address' table in my database
     $stmt_users_has_addresses = $pdo->prepare(
-        'INSERT INTO users_has_addresses (users_id_user, addresses_id_address) 
+            'INSERT INTO users_has_addresses (users_id_user, addresses_id_address) 
                    VALUES (:users_id_user, :addresses_id_address)');
 
     $stmt_users_has_addresses->execute([
-        'users_id_user' => $id_user,
-        'addresses_id_address' => $id_address,
+            'users_id_user' => $id_user,
+            'addresses_id_address' => $id_address,
     ]);
 
 }
@@ -116,7 +116,7 @@ require_once './header.php'
                                    type="text"
                                    name="first_name"
                                    placeholder="Enter your first name"
-                                   value="<?=$user_all_data['first_name']?>"
+                                   value="<?= $user_all_data['first_name'] ?>"
                                    required><br><br>
                         </label>
                         <label for="last_name">Last name<br>
@@ -124,7 +124,7 @@ require_once './header.php'
                                    type="text"
                                    name="last_name"
                                    placeholder="Enter your last name"
-                                   value="<?=$user_all_data['last_name']?>"
+                                   value="<?= $user_all_data['last_name'] ?>"
                                    required><br><br>
                         </label>
                         <label for="birthdate">Birthdate<br>
@@ -132,7 +132,7 @@ require_once './header.php'
                                    type="date"
                                    name="birthdate"
                                    placeholder="Enter your birthdate"
-                                   value="<?=$user_all_data['birthdate']?>"
+                                   value="<?= $user_all_data['birthdate'] ?>"
                                    required><br><br>
                         </label>
                         <label for="email">Email<br>
@@ -140,7 +140,7 @@ require_once './header.php'
                                    type="email"
                                    name="email"
                                    placeholder="Enter your email - Example : test.test@example.com"
-                                   value="<?=$user_all_data['email']?>"
+                                   value="<?= $user_all_data['email'] ?>"
                                    required><br><br>
                         </label>
                         <label for="phone">Phone number<br>
@@ -148,36 +148,39 @@ require_once './header.php'
                                    type="tel"
                                    name="phone"
                                    maxlength="10"
-                                   value="<?=$user_all_data['phone']?>"
+                                   value="<?= $user_all_data['phone'] ?>"
                                    placeholder="Enter your phone number - Example : 0791234567"><br>
                         </label><br>
-
-
-
-
-                        //Need to do an "if" with a loop to enter which civility and sex is correct next.
-
-
-
                         <p>Civility</p>
                         <div>
                             <input id="civility"
                                    type="radio"
                                    name="civility"
                                    value="1"
-                                   checked>
+                                   <?php if (($user_all_data['civility']) == 1) {
+                                   ?>checked<?php
+                            } ?>
+                            >
                             <label class="radio"
                                    for="civility">Single</label>
                             <input id="civility"
                                    type="radio"
                                    name="civility"
-                                   value="2">
+                                   value="2"
+                                   <?php if (($user_all_data['civility']) == 2) {
+                                   ?>checked<?php
+                            } ?>
+                            >
                             <label class="radio"
                                    for="civility">Married</label>
                             <input id="civility"
                                    type="radio"
                                    name="civility"
-                                   value="3">
+                                   value="3"
+                                   <?php if (($user_all_data['civility']) == 3) {
+                                   ?>checked<?php
+                            } ?>
+                            >
                             <label class="radio"
                                    for="civility">Divorced</label>
                         </div>
@@ -188,33 +191,36 @@ require_once './header.php'
                                    type="radio"
                                    name="sex"
                                    value="1"
-                                   checked>
+                                   <?php if (($user_all_data['sex']) == 1) {
+                                   ?>checked<?php
+                            } ?>
+                            >
                             <label class="radio"
                                    for="sex">Male
                             </label>
                             <input id="sex"
                                    type="radio"
                                    name="sex"
-                                   value="2">
+                                   value="2"
+                                   <?php if (($user_all_data['sex']) == 2) {
+                                   ?>checked<?php
+                            } ?>
+                            >
                             <label class="radio"
                                    for="sex">Female
                             </label>
                             <input id="sex"
                                    type="radio"
                                    name="sex"
-                                   value="3">
+                                   value="3"
+                                   <?php if (($user_all_data['sex']) == 3) {
+                                   ?>checked<?php
+                            } ?>
+                            >
                             <label class="radio"
                                    for="sex">Other
                             </label>
                         </div>
-
-
-
-
-                        //Need to do an "if" with a loop to enter which civility and sex is correct next.
-
-
-
                         <br>
                         <h3 class="title is-3">Address table</h3>
                         <label for="country">Country<br>
@@ -222,7 +228,7 @@ require_once './header.php'
                                    type="text"
                                    name="country"
                                    placeholder="Enter your country"
-                                   value="<?=$user_all_data['country_name']?>"
+                                   value="<?= $user_all_data['country_name'] ?>"
                                    required><br><br>
                         </label>
                         <label for="street">Street<br>
@@ -230,7 +236,7 @@ require_once './header.php'
                                    type="text"
                                    name="street"
                                    placeholder="Enter your street"
-                                   value="<?=$user_all_data['street']?>"
+                                   value="<?= $user_all_data['street'] ?>"
                                    required><br><br>
                         </label>
                         <label for="postal_code">Postal code<br>
@@ -239,7 +245,7 @@ require_once './header.php'
                                    min="100"
                                    max="999999"
                                    name="postal_code"
-                                   value="<?=$user_all_data['postal_code']?>"
+                                   value="<?= $user_all_data['postal_code'] ?>"
                                    placeholder="NPA"><br><br>
                         </label>
                         <label for="city">City<br>
@@ -247,7 +253,7 @@ require_once './header.php'
                                    type="text"
                                    name="city"
                                    placeholder="Enter your city"
-                                   value="<?=$user_all_data['city']?>"
+                                   value="<?= $user_all_data['city'] ?>"
                                    required><br><br>
                         </label>
                         <input class="button is-primary is-outlined is-light"
