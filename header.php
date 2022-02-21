@@ -18,7 +18,7 @@
     </style>
 </head>
 <body>
-<nav class="navbar mx-3 is-fixed-top"
+<nav class="navbar mx-3"
      role="navigation"
      aria-label="main navigation">
     <div class="navbar-brand">
