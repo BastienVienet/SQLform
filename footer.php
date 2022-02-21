@@ -7,5 +7,6 @@
 </p>
 <script src="move_to_top.js"></script>
 <script src="toggle_burger_menu_navbar.js"></script>
+<script src="delete_package_notif.js"></script>
 </body>
 </html>

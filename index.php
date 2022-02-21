@@ -77,6 +77,14 @@ if (isset($_POST['submit'])) {
             'addresses_id_address' => $id_address,
     ]);
 
+    ?>
+    <div class="notification is-success is-light">
+        <button class="delete"></button>
+        You got added to my database !
+        Check your little card <a href="list_users.php">here</a> !
+    </div>
+    <?php
+
 }
 
 require_once './header.php'
