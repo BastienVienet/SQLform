@@ -99,7 +99,7 @@ if (isset($_POST['submit'])) {
 
 }
 
-require_once './header.php'
+require_once './header.php';
 ?>
 
     <section class="section">
@@ -108,7 +108,7 @@ require_once './header.php'
                 Editing your user infos</h1>
             <div class="columns is-multiline">
                 <div class="is-child box column is-8 is-offset-2">
-                    <form action="index.php"
+                    <form action="modify_users.php?id=<?= $_GET['id'] ?>"
                           method="post">
                         <h3 class="title is-3">User Table</h3>
                         <label for="first_name">First name<br>
