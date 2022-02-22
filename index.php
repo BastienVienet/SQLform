@@ -11,7 +11,7 @@ if (isset($_POST['submit'])) {
 
     //Enter a country in my 'countries' table in my database
     $country = Cleantext($_POST['country']);
-    // Test if country exists : Check in database
+    //Test if country exists : Check in database
     $stmt_country_exist_or_not = $pdo->prepare(
             'SELECT * FROM countries WHERE country_name = :country');
 
