@@ -2,7 +2,7 @@
 
 require_once './connecting_DSN.php';
 
-function Cleantext($text) : string
+function Cleantext($text): string
 {
     return ucfirst(mb_strtolower(trim($text)));
 }
@@ -55,25 +55,36 @@ if (isset($_POST['submit'])) {
         $id_country = $pdo->lastInsertId();
     }
 
-    //Enter an address in my 'address' table in my database
+    //Update the address in my 'address' table in my database
     $stmt_address = $pdo->prepare(
-            'INSERT INTO addresses (street, postal_code, city, countries_id_country) 
-                   VALUES (:street, :postal_code, :city, :countries_id_country)');
+            'UPDATE addresses 
+                   SET street = :street,
+                       postal_code = :postal_code,
+                       city = :city,
+                       countries_id_country  = :countries_id_country
+                   WHERE id_address = :id_address
+                   ');
 
     $stmt_address->execute([
             'street' => Cleantext($_POST['street']),
             'postal_code' => $_POST['postal_code'],
             'city' => Cleantext($_POST['city']),
-            'countries_id_country' => $id_country
+            'countries_id_country' => $id_country,
+            'id_address' => $user_all_data['id_address'],
     ]);
 
-    $id_address = $pdo->lastInsertId();
-
-
-    //Enter a user in my 'users' table in my database
+    //Update the user in my 'users' table in my database
     $stmt_user = $pdo->prepare(
-            'INSERT INTO users (first_name, last_name, birthdate, email, phone, civility, sex)
-                   VALUES (:first_name, :last_name, :birthdate, :email, :phone, :civility, :sex) ');
+            'UPDATE users 
+                   SET first_name = :first_name, 
+                       last_name = :last_name,
+                       birthdate = :birthdate,
+                       email = :email,
+                       phone = :phone,
+                       civility = :civility,
+                       sex = :sex
+                   WHERE id_user = :id_user
+                   ');
 
     $stmt_user->execute([
             'first_name' => Cleantext($_POST['first_name']),
@@ -83,21 +94,39 @@ if (isset($_POST['submit'])) {
             'phone' => $_POST['phone'],
             'civility' => $_POST['civility'],
             'sex' => $_POST['sex'],
+            'id_user' => $_GET['id'],
     ]);
 
-    $id_user = $pdo->lastInsertId();
+    ?>
 
-    //Linking 'users' and 'address' in my 'user_has_address' table in my database
-    $stmt_users_has_addresses = $pdo->prepare(
-            'INSERT INTO users_has_addresses (users_id_user, addresses_id_address) 
-                   VALUES (:users_id_user, :addresses_id_address)');
+    <div class="notification is-success is-light">
+        <button class="delete"></button>
+    You successfully edited your profile !
+    Check your little card <a href="list_users.php#<?= $_POST['first_name'] . "-" . $_POST['last_name'] . "-" . $_GET['id'] ?>">here</a> !
+    </div>
 
-    $stmt_users_has_addresses->execute([
-            'users_id_user' => $id_user,
-            'addresses_id_address' => $id_address,
-    ]);
-
+    <?php
 }
+
+//Pre-fill the form with the user data again after the update
+//Select all the data
+$stmt_all_data = $pdo->prepare('
+SELECT *
+FROM users
+INNER JOIN users_has_addresses uha 
+    on users.id_user = uha.users_id_user
+INNER JOIN addresses a 
+    on uha.addresses_id_address = a.id_address
+INNER JOIN countries c 
+    on a.countries_id_country = c.id_country
+WHERE id_user = :id_user
+');
+
+//Getting the id from the URL and retrieving all the data from that id line
+$stmt_all_data->execute([
+        'id_user' => $_GET['id']
+]);
+$user_all_data = $stmt_all_data->fetch();
 
 require_once './header.php';
 ?>
@@ -260,7 +289,8 @@ require_once './header.php';
                                id="submit_id"
                                type="submit"
                                name="submit"
-                               value="submit"><br><br><br>
+                               value="submit"
+                               ><br><br><br>
                     </form>
                 </div>
             </div>
