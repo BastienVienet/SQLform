@@ -2,7 +2,7 @@
 
 require_once './connecting_DSN.php';
 
-function Cleantext($text)
+function Cleantext($text): string
 {
     return ucfirst(mb_strtolower(trim($text)));
 }
