@@ -5,8 +5,8 @@
     </span>
     </button>
 </p>
-<script src="move_to_top.js"></script>
-<script src="toggle_burger_menu_navbar.js"></script>
-<script src="delete_package_notif.js"></script>
+<script src="JS_Bulma/move_to_top.js"></script>
+<script src="JS_Bulma/toggle_burger_menu_navbar.js"></script>
+<script src="JS_Bulma/delete_package_notif.js"></script>
 </body>
 </html>
