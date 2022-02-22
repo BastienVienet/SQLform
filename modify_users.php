@@ -7,8 +7,8 @@ function Cleantext($text)
     return ucfirst(mb_strtolower(trim($text)));
 }
 
-// Pre-fill the form with the user data
-
+//Pre-fill the form with the user data
+//Select all the data
 $stmt_all_data = $pdo->prepare('
 SELECT *
 FROM users
@@ -21,17 +21,17 @@ INNER JOIN countries c
 WHERE id_user = :id_user
 ');
 
+//Getting the id from the URL and retrieving all the data from that id line
 $stmt_all_data->execute([
         'id_user' => $_GET['id']
 ]);
 $user_all_data = $stmt_all_data->fetch();
 
-
 if (isset($_POST['submit'])) {
 
     //Enter a country in my 'countries' table in my database
     $country = Cleantext($_POST['country']);
-    // Test if country exists : Check in database
+    //Test if country exists : Check in database
     $stmt_country_exist_or_not = $pdo->prepare(
             'SELECT * FROM countries WHERE country_name = :country');
 

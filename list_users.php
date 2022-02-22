@@ -3,7 +3,7 @@
 require_once './connecting_DSN.php';
 
 //Display the user table database in the HTML
-
+//Select all the data
 $stmt_all_data = $pdo->prepare('
 SELECT *
 FROM users
@@ -16,10 +16,12 @@ INNER JOIN countries c
 ');
 
 $stmt_all_data->execute([]);
-//$user_all_data = $stmt_all_data->fetchAll();
-
-/*  foreach ($user_all_data as $row) {
-    echo "{$row['first_name']} - {$row['last_name']} - {$row['birthdate']} - {$row['email']} - {$row['phone']} - {$row['civility']} - {$row['sex']} - {$row['street']} - {$row['postal_code']} - {$row['city']} - {$row['country_name']}<br><br>";
+/* Previous version without the card
+ *
+ * $user_all_data = $stmt_all_data->fetchAll();
+ *
+ * foreach ($user_all_data as $row) {
+ *  echo "{$row['first_name']} - {$row['last_name']} - {$row['birthdate']} - {$row['email']} - {$row['phone']} - {$row['civility']} - {$row['sex']} - {$row['street']} - {$row['postal_code']} - {$row['city']} - {$row['country_name']}<br><br>";
 }*/
 
 require_once 'header.php'
