@@ -10,4 +10,4 @@ We also add small details with another page that just portray what's in the data
 
 02/22/2022 : We made some changes and added an edit button to modify the user in the database
 \
-02/25/2022 : Adding a working delete button
+02/25/2022 : Adding a working delete button and a login and logout mechanism
