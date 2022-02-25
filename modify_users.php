@@ -101,8 +101,9 @@ if (isset($_POST['submit'])) {
 
     <div class="notification is-success is-light">
         <button class="delete"></button>
-    You successfully edited your profile !
-    Check your little card <a href="list_users.php#<?= $_POST['first_name'] . "-" . $_POST['last_name'] . "-" . $_GET['id'] ?>">here</a> !
+        You successfully edited your profile !
+        Check your little card
+        <a href="list_users.php#<?= $_POST['first_name'] . "-" . $_POST['last_name'] . "-" . $_GET['id'] ?>">here</a> !
     </div>
 
     <?php
@@ -289,14 +290,13 @@ require_once './header.php';
                                id="submit_id"
                                type="submit"
                                name="submit"
-                               value="Submit"
-                               >
+                               value="Submit">
                         <a href="list_users.php#<?= $user_all_data['first_name'] . "-" . $user_all_data['last_name'] . "-" . $_GET['id'] ?>">
                             <label for="delete_user_no">
-                            <input class="button is-info is-outlined is-light"
-                                   id="delete_user_no"
-                                   name="delete_user_no"
-                                   value="Go back to my card.">
+                                <input class="button is-info is-outlined is-light"
+                                       id="delete_user_no"
+                                       name="delete_user_no"
+                                       value="Go back to my card.">
                             </label>
                         </a>
                     </form>

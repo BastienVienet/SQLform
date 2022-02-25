@@ -29,7 +29,8 @@ require_once 'header.php'
     <div class="container mt-3">
         <div class="columns is-multiline is-half-desktop my-4">
             <?php while ($rUAD = $stmt_all_data->fetch()) { ?>
-                <section id="<?= $rUAD['first_name'] . "-" . $rUAD['last_name'] . "-" . $rUAD['id_user'] ?>" class="card box column is-5 mx-auto mb-6">
+                <section id="<?= $rUAD['first_name'] . "-" . $rUAD['last_name'] . "-" . $rUAD['id_user'] ?>"
+                         class="card box column is-5 mx-auto mb-6">
                     <div class="card-content mb-3">
                         <div class="media">
                             <div class="media-left">
