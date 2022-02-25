@@ -289,8 +289,14 @@ require_once './header.php';
                                id="submit_id"
                                type="submit"
                                name="submit"
-                               value="submit"
-                               ><br><br><br>
+                               value="Submit"
+                               >
+                        <a href="list_users.php#<?= $user_all_data['first_name'] . "-" . $user_all_data['last_name'] . "-" . $_GET['id'] ?>">
+                            <input class="button is-info is-outlined is-light"
+                                   id="delete_user_no"
+                                   name="delete_user_no"
+                                   value="Go back to my card.">
+                        </a>
                     </form>
                 </div>
             </div>

@@ -218,7 +218,7 @@ require_once './header.php'
                            id="submit_id"
                            type="submit"
                            name="submit"
-                           value="submit"><br><br><br>
+                           value="Submit"><br><br><br>
                 </form>
             </div>
         </div>

@@ -49,7 +49,7 @@ if (isset($_POST['submit'])) {
         <button class="delete"></button>
         You successfully deleted your profile data!
         Create a new user
-        <a href="index.php">here</a> !
+        <a href="index.php">here</a> or see the user cards <a href="list_users.php">here</a> !
     </div>
 
     <?php
