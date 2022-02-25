@@ -52,7 +52,7 @@ require_once 'header.php'
                     <footer class="card-footer">
                         <a href="modify_users.php?id=<?= $rUAD['id_user'] ?>"
                            class="card-footer-item">Edit</a>
-                        <a href="#"
+                        <a href="delete_user.php?id=<?= $rUAD['id_user'] ?>"
                            class="card-footer-item">Delete</a>
                     </footer>
                 </section>
