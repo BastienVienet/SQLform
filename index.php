@@ -1,6 +1,11 @@
 <?php
 
+require_once './authentification.php';
 require_once './connecting_DSN.php';
+
+if (!isConnected()) {
+     header('Location: login.php');
+}
 
 function Cleantext($text): string
 {

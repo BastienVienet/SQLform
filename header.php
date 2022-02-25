@@ -1,3 +1,10 @@
+<?php
+
+if (isset($_POST['Log_out'])) {
+    disconnect();
+}
+
+?>
 <!doctype html>
 <html lang="en">
 <head>
@@ -44,14 +51,16 @@
         </div>
         <div class="navbar-end">
             <div class="navbar-item">
-                <div class="buttons">
-                    <a class="button is-primary">
-                        <strong>Sign up</strong>
-                    </a>
-                    <a class="button is-light">
-                        Log in
-                    </a>
-                </div>
+                <form action="index.php"
+                      method="post">
+                    <label for="Log_out">
+                        <input class="button is-primary"
+                               type="submit"
+                               id="Log_out"
+                               name="Log_out"
+                               value="Log out">
+                    </label>
+                </form>
             </div>
         </div>
     </div>

@@ -1,7 +1,11 @@
 <?php
 
+require_once './authentification.php';
 require_once './connecting_DSN.php';
 
+if (!isConnected()) {
+    header('Location: login.php');
+}
 //Display the user table database in the HTML
 //Select all the data
 $stmt_all_data = $pdo->prepare('
