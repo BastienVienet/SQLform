@@ -9,4 +9,5 @@ Our goal in this project was to link the database with the form so that, when we
 We also add small details with another page that just portray what's in the database.
 
 02/22/2022 : We made some changes and added an edit button to modify the user in the database
+\
 02/25/2022 : Adding a working delete button
