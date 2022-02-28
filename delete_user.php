@@ -48,6 +48,16 @@ if (isset($_POST['submit'])) {
             'id_user' => $_GET['id']
     ]);
 
+    //Delete in 'address' table
+    $stmt_user = $pdo->prepare('
+    DELETE FROM addresses
+    WHERE id_address = :id_address;
+    ');
+
+    $stmt_user->execute([
+            'id_address' => $user_all_data['id_address']
+    ]);
+
     ?>
 
     <div class="notification is-success is-light">
