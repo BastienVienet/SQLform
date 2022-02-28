@@ -29,12 +29,12 @@ $user_all_data = $stmt_all_data->fetch();
 if (isset($_POST['submit'])) {
 
     //Delete in 'users_has_addresses' table
-    $stmt_user = $pdo->prepare('
+    $stmt_user_has_addresses = $pdo->prepare('
     DELETE FROM users_has_addresses
     WHERE users_id_user = :users_id_user;
     ');
 
-    $stmt_user->execute([
+    $stmt_user_has_addresses->execute([
             'users_id_user' => $_GET['id']
     ]);
 
@@ -49,12 +49,12 @@ if (isset($_POST['submit'])) {
     ]);
 
     //Delete in 'address' table
-    $stmt_user = $pdo->prepare('
+    $stmt_address = $pdo->prepare('
     DELETE FROM addresses
     WHERE id_address = :id_address;
     ');
 
-    $stmt_user->execute([
+    $stmt_address->execute([
             'id_address' => $user_all_data['id_address']
     ]);
 
