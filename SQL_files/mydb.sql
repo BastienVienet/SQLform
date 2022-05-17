@@ -8,19 +8,19 @@ SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION';
 
 -- -----------------------------------------------------
--- Schema mydb
+-- Schema formulairejk
 -- -----------------------------------------------------
 
 -- -----------------------------------------------------
--- Schema mydb
+-- Schema formulairejk
 -- -----------------------------------------------------
-CREATE SCHEMA IF NOT EXISTS `mydb` DEFAULT CHARACTER SET utf8 ;
-USE `mydb` ;
+CREATE SCHEMA IF NOT EXISTS `formulairejk` DEFAULT CHARACTER SET utf8 ;
+USE `formulairejk` ;
 
 -- -----------------------------------------------------
--- Table `mydb`.`users`
+-- Table `formulairejk`.`users`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`users` (
+CREATE TABLE IF NOT EXISTS `formulairejk`.`users` (
   `id_user` INT NOT NULL AUTO_INCREMENT,
   `first_name` VARCHAR(45) NOT NULL,
   `last_name` VARCHAR(45) NOT NULL,
@@ -34,9 +34,9 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `mydb`.`countries`
+-- Table `formulairejk`.`countries`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`countries` (
+CREATE TABLE IF NOT EXISTS `formulairejk`.`countries` (
   `id_country` INT NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(45) NULL,
   PRIMARY KEY (`id_country`))
@@ -44,50 +44,50 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `mydb`.`adresses`
+-- Table `formulairejk`.`addresses`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`adresses` (
-  `id_adress` INT NOT NULL AUTO_INCREMENT,
+CREATE TABLE IF NOT EXISTS `formulairejk`.`addresses` (
+  `id_address` INT NOT NULL AUTO_INCREMENT,
   `street` VARCHAR(60) NOT NULL,
   `postal_code` INT NOT NULL,
   `city` VARCHAR(45) NOT NULL,
   `countries_id_country` INT NOT NULL,
-  PRIMARY KEY (`id_adress`),
-  INDEX `fk_adresses_countries_idx` (`countries_id_country` ASC) VISIBLE,
-  CONSTRAINT `fk_adresses_countries`
+  PRIMARY KEY (`id_address`),
+  INDEX `fk_addresses_countries_idx` (`countries_id_country` ASC) VISIBLE,
+  CONSTRAINT `fk_addresses_countries`
     FOREIGN KEY (`countries_id_country`)
-    REFERENCES `mydb`.`countries` (`id_country`)
+    REFERENCES `formulairejk`.`countries` (`id_country`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `mydb`.`users_has_adresses`
+-- Table `formulairejk`.`users_has_addresses`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`users_has_adresses` (
+CREATE TABLE IF NOT EXISTS `formulairejk`.`users_has_addresses` (
   `users_id_user` INT NOT NULL,
-  `adresses_id_adress` INT NOT NULL,
-  PRIMARY KEY (`users_id_user`, `adresses_id_adress`),
-  INDEX `fk_users_has_adresses_adresses1_idx` (`adresses_id_adress` ASC) VISIBLE,
-  INDEX `fk_users_has_adresses_users1_idx` (`users_id_user` ASC) VISIBLE,
-  CONSTRAINT `fk_users_has_adresses_users1`
+  `addresses_id_adress` INT NOT NULL,
+  PRIMARY KEY (`users_id_user`, `addresses_id_adress`),
+  INDEX `fk_users_has_addresses_addresses1_idx` (`addresses_id_adress` ASC) VISIBLE,
+  INDEX `fk_users_has_addresses_users1_idx` (`users_id_user` ASC) VISIBLE,
+  CONSTRAINT `fk_users_has_addresses_users1`
     FOREIGN KEY (`users_id_user`)
-    REFERENCES `mydb`.`users` (`id_user`)
+    REFERENCES `formulairejk`.`users` (`id_user`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
-  CONSTRAINT `fk_users_has_adresses_adresses1`
-    FOREIGN KEY (`adresses_id_adress`)
-    REFERENCES `mydb`.`adresses` (`id_adress`)
+  CONSTRAINT `fk_users_has_addresses_addresses1`
+    FOREIGN KEY (`addresses_id_adress`)
+    REFERENCES `formulairejk`.`addresses` (`id_address`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `mydb`.`events`
+-- Table `formulairejk`.`events`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`events` (
+CREATE TABLE IF NOT EXISTS `formulairejk`.`events` (
   `id_event` INT NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(45) NOT NULL,
   `description` LONGTEXT NULL,
@@ -98,9 +98,9 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `mydb`.`users_has_events`
+-- Table `formulairejk`.`users_has_events`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`users_has_events` (
+CREATE TABLE IF NOT EXISTS `formulairejk`.`users_has_events` (
   `users_id_user` INT NOT NULL,
   `events_id_event` INT NOT NULL,
   `participent_type` VARCHAR(45) NOT NULL,
@@ -110,12 +110,12 @@ CREATE TABLE IF NOT EXISTS `mydb`.`users_has_events` (
   INDEX `fk_users_has_events_users1_idx` (`users_id_user` ASC) VISIBLE,
   CONSTRAINT `fk_users_has_events_users1`
     FOREIGN KEY (`users_id_user`)
-    REFERENCES `mydb`.`users` (`id_user`)
+    REFERENCES `formulairejk`.`users` (`id_user`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_users_has_events_events1`
     FOREIGN KEY (`events_id_event`)
-    REFERENCES `mydb`.`events` (`id_event`)
+    REFERENCES `formulairejk`.`events` (`id_event`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
